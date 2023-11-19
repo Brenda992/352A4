@@ -43,7 +43,7 @@ if(!empty($_SESSION['valid_user']))  {
     $current_user = $_SESSION['valid_user'];
 }
 
-function redirect($url) {
+function redirect_to($url) {
     header('Location: ' . $url);
     exit;
 }

@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) { // detect form submission
 		$stmt->bind_param('ssss',$email,$pw_encrypted,$fname,$lname);
 		$stmt->execute();
         echo $query;
-        redirect_to('sign-in.php');
+        redirect_to('login.php');
     }
 }
 else {
