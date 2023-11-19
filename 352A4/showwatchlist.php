@@ -4,7 +4,7 @@ no_SSL();
 
 if(!isset($_SESSION['valid_user'])) {
 	$_SESSION['callback_url'] = 'showwatchlist.php';
-	redirect_to('sign-in.php');
+	redirect_to('login.php');
 } 
 
 $email = $_SESSION['valid_user'];
