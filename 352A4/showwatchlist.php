@@ -28,8 +28,8 @@ include_once('header.php');
 
 if (isset($message)) echo "<p>$message</p>";
 
-echo "<h2>Your Watchlist</h2>\n";
-echo "<ul>\n";
+echo "<h2>Your Watchlist</h2>";
+echo "<ul>";
 while ($row = $res->fetch_row()) {
 	echo "<li>";
 	format_model_name_as_link($row[0], $row[1],"modeldetails.php");
@@ -37,9 +37,12 @@ while ($row = $res->fetch_row()) {
 	format_watchlist_action_link($row[0],"Remove","removefromwatchlist.php");
 	echo "</li>\n";
 };
-echo "</ul>\n";
+echo "</ul>";
+
+echo "<p id=\"msg\"></p>";
 include_once('footer.php');
 
 $res->free_result();
 $db->close();
 ?>
+
