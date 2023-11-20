@@ -2,7 +2,9 @@
 include('function.php');
 no_SSL();
 
+// Retrieve and trim the product code from the GET request
 $code = trim($_GET['productCode']);
+// Retrieve and trim any message passed in the GET request, using @ to suppress errors if 'message' is not set
 @$msg = trim($_GET['message']);
 
 $query_str = "SELECT * 
@@ -16,6 +18,7 @@ $stmt->bind_result($prCode,$prName,$prLine,$prScale,$prVendor,$prDesc,$prQ,$prPr
 
 include('header.php');
 
+// Fetch the result and display product details
 if($stmt->fetch()) {
 	echo "<h3>$prName</h3>\n";
 	echo "<p>Category: $prLine, Scale: $prScale, Vendor: $prVendor, Price: \$$prPrice</p>\n";
@@ -23,6 +26,7 @@ if($stmt->fetch()) {
 	}
 $stmt->free_result();
 
+// Display add to watchlist form if the user is logged in and the product is not already in the watchlist
 if(loggedIn() && !inWatchlist($code) ) {
 	echo "<form action=\"addtowatchlist.php\" method=\"post\">\n";
 	echo "<input type=\"hidden\" name=\"productCode\" value=$code>\n";

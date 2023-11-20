@@ -10,16 +10,18 @@ if (isset($_POST['submit'])) { // detect form submission
     $email = !empty($_POST["email"]) ? trim($_POST["email"]) : "";
     $password = !empty($_POST["password"]) ? $_POST["password"] : "";
     $password2 = !empty($_POST["password2"]) ? $_POST["password2"] : "";
-    
+       // Check if passwords match
     if($password != $password2) {
         $message = "Passwords do not match.";
     }
+    // Check if all fields are filled
     else if (!$fname || !$lname || !$email || !$password) {
     	$message = "All fields manadatory.";
     }
     else {
         $pw_encrypted = password_hash($password, PASSWORD_DEFAULT);
 
+        // Prepare an INSERT query to add the new user to the database
         $query = "INSERT INTO users (email, password, firstName,lastName) ";
         $query .= "VALUES (?,?,?,?)";
       
@@ -27,6 +29,8 @@ if (isset($_POST['submit'])) { // detect form submission
 		$stmt->bind_param('ssss',$email,$pw_encrypted,$fname,$lname);
 		$stmt->execute();
         echo $query;
+
+        // Redirect to the login page after successful registration
         redirect_to('login.php');
     }
 }

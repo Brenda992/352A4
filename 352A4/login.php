@@ -2,15 +2,16 @@
 include('function.php');
 require_SSL();
 
-
+// Check if the form is not submitted
 if (!isset($_POST['submit'])) { // detect form submission
 
     $email = $pass = "";
 
 } else {
+    // Retrieve and trim email and password from the POST data if they exist
     $email = !empty($_POST["email"]) ? trim($_POST["email"]) : "";
     $password = !empty($_POST["password"]) ? trim($_POST["password"]) : "";
-
+    // Prepare a query to fetch the user's email and hashed password from the database
     $query = "SELECT email, password FROM users ";
     $query .= "WHERE email = ?";
 
@@ -19,9 +20,10 @@ if (!isset($_POST['submit'])) { // detect form submission
 	$stmt->execute();
 	$stmt->bind_result($email2,$pass2_hash);
 	
-
+// Check if user exists and password is correct
     if($stmt->fetch() && password_verify($password,$pass2_hash)) {
         $_SESSION['valid_user'] = $email;
+        // Set default callback URL and update it if it exists in the session
         $callback_url = "showwatchlist.php";
         if (isset($_SESSION['callback_url']))
         	$callback_url = $_SESSION['callback_url'];
