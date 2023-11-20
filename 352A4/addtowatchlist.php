@@ -6,7 +6,7 @@ $productCode = !empty($_POST['productCode']) ? $_POST['productCode'] : "";
 if(!isset($_SESSION['valid_user'])) {
 	$_SESSION['callback_url'] = 'addtowatchlist.php';
 	$_SESSION['productCode'] = $productCode;
-	redirect_to('sign-in.php');
+	redirect_to('login.php');
 } 
 
 $email = $_SESSION['valid_user'];
