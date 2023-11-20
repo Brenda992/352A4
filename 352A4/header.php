@@ -27,7 +27,7 @@
 					<a class="nav" href="showwatchlist.php">Watchlist</a> |
 					<?php
 					if (isset($_SESSION['valid_user']))
-						echo "<a class=\"nav\"  href=\"sign-out.php\">Logout</a>";
+						echo "<a class=\"nav\"  href=\"logout.php\">Logout</a>";
 					else
 						echo "<a class=\"nav\" href=\"login.php\">Login</a>";
 					?>

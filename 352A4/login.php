@@ -11,7 +11,7 @@ if (!isset($_POST['submit'])) { // detect form submission
     $email = !empty($_POST["email"]) ? trim($_POST["email"]) : "";
     $password = !empty($_POST["password"]) ? trim($_POST["password"]) : "";
 
-    $query = "SELECT email,password from users ";
+    $query = "SELECT email, password FROM users ";
     $query .= "WHERE email = ?";
 
 	$stmt = $db->prepare($query);
@@ -22,7 +22,7 @@ if (!isset($_POST['submit'])) { // detect form submission
 
     if($stmt->fetch() && password_verify($password,$pass2_hash)) {
         $_SESSION['valid_user'] = $email;
-        $callback_url = "showmodels.php";
+        $callback_url = "showwatchlist.php";
         if (isset($_SESSION['callback_url']))
         	$callback_url = $_SESSION['callback_url'];
         //switch back to non-secure http
